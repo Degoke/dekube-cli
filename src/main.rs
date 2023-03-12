@@ -27,7 +27,7 @@ enum Commands {
 fn main() -> Result<()> {
     env_logger::init();
     info!("Starting up");
-    let conn = Connection::open_in_memory()?;
+    let conn = Connection::open("dekube.db")?;
 
     match conn.execute(
         "CREATE TABLE IF NOT EXISTS user (
