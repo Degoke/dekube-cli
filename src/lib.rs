@@ -117,7 +117,7 @@ fn check_if_authenticated(conn: &Connection) -> Result<User> {
 
 }
 
-fn get_user_by_email(conn: &Connection, email: &String) -> Result<User, rusqlite::Error> {
+fn get_user_by_email(conn: &Connection, email: &String) -> Result<User> {
     let mut stmt = conn.prepare("SELECT id, email, token FROM user WHERE email = (?1)")?;
 
     let mut user_iter = stmt.query_map([email], |row| {
@@ -128,17 +128,18 @@ fn get_user_by_email(conn: &Connection, email: &String) -> Result<User, rusqlite
         })
 
     })?;
-
-    // info!("user exists {:?}", user_iter.nth(0).unwrap());
    
 
-    // match user_iter.nth(0) {
-    //     Some(Ok(user)) => return Ok(user),
-    //     None => return Err(anyhow!("User not found")),
-    //     _ => return Err(anyhow!("User not found")),
-    // };
-
-    return user_iter.nth(0).unwrap();
+    match user_iter.nth(0) {
+        Some(user) => {
+            match user {
+                Ok(user) => return Ok(user),
+                Err(_) => return Err(anyhow!("User not anyhow"))
+            }
+        },
+        None => return Err(anyhow!("User not found"))
+    };
+    
 }
 
 // /**
