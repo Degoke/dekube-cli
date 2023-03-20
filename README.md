@@ -13,7 +13,7 @@ user should be able to push dockerfile to dekube project
 
 user should be able to deploy dekube project
 
-commands
+##commands
 dekube login --email --password 
 
 dekube create-app --name 
@@ -24,11 +24,11 @@ dekube upload --file --app
 
 dekube deploy --app
 
-todo
+##todo
 clean up code
 
-upload
-Archive befor uploading 
+###upload
+compress before uploading 
 
 ensure authenticated 
 
