@@ -4,6 +4,10 @@ use reqwest::{Error};
 use rusqlite::{Connection};
 use anyhow::{Result, anyhow};
 use serde::{Deserialize, Serialize};
+use aws_sdk_s3::{Client as S3Client, Region};
+use aws_config::meta::region::RegionProviderChain;
+
+pub mod upload;
 
 #[derive(Debug, Serialize, Deserialize)]
 struct User {

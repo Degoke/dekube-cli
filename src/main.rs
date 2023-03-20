@@ -22,9 +22,15 @@ enum Commands {
         #[arg(short, long)]
         password: String
     },
+
+    Upload {
+        #[arg(short, long)]
+        path: std::path::PathBuf,
+    }
 }
  
-fn main() -> Result<()> {
+ #[tokio::main]
+pub async fn main() -> Result<()> {
     env_logger::init();
     info!("Starting up");
     let conn = Connection::open("dekube.db")?;
@@ -46,6 +52,14 @@ fn main() -> Result<()> {
     match &cli.command {
         Commands::Authenticate { email, password } => {
             dekube::authenticate_user(email, password, &conn);
+        },
+        Commands::Upload { path } => {
+            // let mut folder = path.clone();
+            // println!("{:?} is dir {}", folder, folder.is_dir());
+            // folder.push("Dockerfile");
+            // println!("{:?}", folder);
+            // println!("dockerfile exists {}", folder.exists());
+            dekube::upload::handle_upload(path).await
         }
     }
 

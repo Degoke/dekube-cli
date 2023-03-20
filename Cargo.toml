@@ -7,6 +7,9 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.69"
+aws-config = "0.54.1"
+aws-sdk-s3 = "0.24.0"
+aws-smithy-http = { version = "0.54.4", features = ["rt-tokio"] }
 clap = { version = "4.1.8", features = ["derive"] }
 env_logger = "0.10.0"
 log = "0.4.17"
@@ -14,6 +17,9 @@ reqwest = { version = "0.11.14", features = ["blocking", "json"] }
 rusqlite = { version = "0.28.0", features = ["bundled"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.94"
+tokio = { version = "1.26.0", features = ["full"] }
+thiserror = "1.0"
+shellexpand = "3.0.0"
 
 [dev-dependencies]
 assert_cmd = "2.0.8"

@@ -12,3 +12,13 @@ user should be  able to deploy dekube project
 `dekube list-app`
 `dekube upload --file --app`
 `dekube deploy --app`
+
+### todo
+clean up code
+#### upload
+Archive befor uploading
+ensure authenticated
+fetch secrets and upload key based on input and auth
+add app to upload command and upload per app
+confirm path contains `dekube.config` file
+parse and validate `dekube.config` file before uploading
